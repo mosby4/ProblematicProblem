@@ -22,6 +22,7 @@ namespace ProblematicProblem
             if (userResponse == "yes")
             {
                 Console.WriteLine("Ok cool.");
+                Console.WriteLine();
             }
             if (userResponse == "no")
             {
@@ -31,15 +32,23 @@ namespace ProblematicProblem
            
 
             Console.Write("We are going to need your information first! What is your name? ");
-                string userName = Console.ReadLine();
-                Console.WriteLine();
-
-                Console.Write("What is your age? ");
-                int userAge = int.Parse(Console.ReadLine());
-            if (userAge == null)
+            string userName = Console.ReadLine();
+            while (string.IsNullOrEmpty(userName ))
             {
-                Console.WriteLine("We need a response.");
+                Console.WriteLine("Name can't be empty! Input your name once more");
+                userName = Console.ReadLine();
+            }
 
+            Console.WriteLine($"Hi, {userName }!");
+            Console.WriteLine();
+
+            Console.Write("What is your age? ");
+            var userAge = Console.ReadLine();
+            while (string.IsNullOrEmpty(userAge))
+            {            
+                Console.WriteLine("We need a response.");
+                var newAge = int.Parse(Console.ReadLine());
+                
             }
 
                 Console.WriteLine();
