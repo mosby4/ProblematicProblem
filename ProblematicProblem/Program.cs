@@ -3,26 +3,39 @@ using System.Collections.Generic;
 using System.Threading;
 
 bool cont = true;
+string userResponse;
+Random rng;
 List<string> activities = new List<string>()
         { "Movies", "Paintball", "Bowling", "Lazer Tag", "LAN Party", "Hiking", "Axe Throwing", "Wine Tasting" };
-
-Console.Write("Hello, welcome to the random activity generator! Would you like to generate a random activity? yes/no: ");
-var userResponse = Console.ReadLine().ToLower();
-
-Random rng = new Random();
-
-Console.WriteLine();
-if (userResponse == "yes")
+do
 {
-    Console.WriteLine("Ok cool.");
+    Console.WriteLine("Hello, welcome to the random activity generator! Would you like to generate a random activity? yes/no: ");
+    userResponse = Console.ReadLine().ToLower();
+
+     rng = new Random();
+
     Console.WriteLine();
-}
-if (userResponse == "no")
-{
-    Console.WriteLine("Ok Thank you for visiting the fun factory.");
-    Console.ReadLine();
-}
-
+    while (string.IsNullOrEmpty(userResponse))
+    {
+        Console.WriteLine("I'm sorry, lets try again. Would you like to generate a random activity?");
+        Console.WriteLine("Please provide a yes or no answer.");
+        userResponse = Console.ReadLine().ToLower();
+        Thread.Sleep(1000);
+        Console.Clear();
+    }
+    if (userResponse == "yes")
+    {
+        Console.WriteLine("Ok cool.");
+        Console.WriteLine();
+    }
+    if (userResponse == "no")
+    {
+        Console.WriteLine("Ok Thank you for visiting the fun factory.");
+        Console.ReadLine();
+        Thread.Sleep(1000);
+        Console.Clear();
+    }
+} while(userResponse == "no" );
 
 Console.Write("We are going to need your information first! What is your name? ");
 string userName = Console.ReadLine();
@@ -41,7 +54,7 @@ while (string.IsNullOrEmpty(userAge))
 {
     Console.WriteLine("We need a response.");
     var newAge = int.Parse(Console.ReadLine());
-
+  
 }
 
 Console.WriteLine();
