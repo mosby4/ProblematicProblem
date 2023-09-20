@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
+
 bool cont = true;
 string userResponse;
 Random rng;
@@ -50,10 +51,12 @@ Console.WriteLine();
 
 Console.Write("What is your age? ");
 var userAge = Console.ReadLine();
+string newAge;
 while (string.IsNullOrEmpty(userAge))
 {
     Console.WriteLine("We need a response.");
-    var newAge = int.Parse(Console.ReadLine());
+    userAge = Console.ReadLine();
+   //newAge = int.Parse(Console.ReadLine());
   
 }
 
@@ -91,8 +94,7 @@ if (seeList)
             Thread.Sleep(250);
         }
         Console.WriteLine();
-        Console.WriteLine("Would you like to add more? yes/no: ");
-        //string addToList = bool.Parse(Console.ReadLine());
+        
     }
 }
 
@@ -126,9 +128,25 @@ while (cont)
 
     }
     Console.Write($"Ah got it! {userName}, your random activity is: {randomActivity}! Is this ok or do you want to grab another activity? Keep/Redo: ");
-    Console.WriteLine();
-    cont = (Console.ReadLine().ToLower() == "redo" ? true : false);
+    var finalResponse = Console.ReadLine().ToLower();
 
+    if (finalResponse == "Redo")
+    {
+        Console.WriteLine("Ok lets start over.");
+        Thread.Sleep(500);
+        Console.Clear();
+    }
 
+    if (finalResponse == "keep")
+    {
+        Console.WriteLine("Great! Enjoy your activity.");
+        Console.WriteLine();
+       
+    }
+   
+
+    //cont = (Console.ReadLine().ToLower() == "redo" ? true : false);
+
+    
 }
     
