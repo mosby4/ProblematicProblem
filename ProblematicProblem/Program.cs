@@ -13,7 +13,7 @@ do
     Console.WriteLine("Hello, welcome to the random activity generator! Would you like to generate a random activity? yes/no: ");
     userResponse = Console.ReadLine().ToLower();
 
-     rng = new Random();
+    rng = new Random();
 
     Console.WriteLine();
     while (string.IsNullOrEmpty(userResponse))
@@ -36,7 +36,7 @@ do
         Thread.Sleep(1000);
         Console.Clear();
     }
-} while(userResponse == "no" );
+} while (userResponse == "no");
 
 Console.Write("We are going to need your information first! What is your name? ");
 string userName = Console.ReadLine();
@@ -51,13 +51,13 @@ Console.WriteLine();
 
 Console.Write("What is your age? ");
 var userAge = Console.ReadLine();
-string newAge;
+
 while (string.IsNullOrEmpty(userAge))
 {
     Console.WriteLine("We need a response.");
     userAge = Console.ReadLine();
-   //newAge = int.Parse(Console.ReadLine());
-  
+    //newAge = int.Parse(Console.ReadLine());
+
 }
 
 Console.WriteLine();
@@ -71,7 +71,7 @@ if (seeList)
     foreach (string activity in activities)
     {
         Console.Write($"{activity} ");
-        Thread.Sleep(250);
+        Thread.Sleep(350);
     }
     Console.WriteLine();
     Console.Write("Would you like to add any activities before we generate one? yes/no: ");
@@ -91,10 +91,11 @@ if (seeList)
         foreach (string activity in activities)
         {
             Console.Write($"{activity} ");
-            Thread.Sleep(250);
+            Thread.Sleep(350);
+
         }
-        Console.WriteLine();
-        
+
+
     }
 }
 
@@ -110,7 +111,7 @@ while (cont)
     Console.WriteLine();
 
     Console.Write("Choosing your random activity");
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < 10; i++)
     {
         Console.Write(". ");
         Thread.Sleep(500);
@@ -119,18 +120,21 @@ while (cont)
     Console.WriteLine();
     int randomNumber = rng.Next(activities.Count);
     string randomActivity = activities[randomNumber];
-    int customerAge = Convert.ToInt16(userAge);
-    if (customerAge > 21 && randomActivity == "Wine Tasting")
+    int customerAge = 0;
+    int.TryParse(userAge, out customerAge);
+
+    if (customerAge < 21 && randomActivity == "Wine Tasting")
     {
         Console.WriteLine($"Oh no! Looks like you are too young to do {randomActivity}");
-        Console.WriteLine("Pick something else!");
+        Thread.Sleep(500);
+        Console.WriteLine("Picking something else!");
         activities.Remove(randomActivity);
 
     }
     Console.Write($"Ah got it! {userName}, your random activity is: {randomActivity}! Is this ok or do you want to grab another activity? Keep/Redo: ");
     var finalResponse = Console.ReadLine().ToLower();
 
-    if (finalResponse == "Redo")
+    if (finalResponse == "redo")
     {
         Console.WriteLine("Ok lets start over.");
         Thread.Sleep(500);
@@ -141,12 +145,8 @@ while (cont)
     {
         Console.WriteLine("Great! Enjoy your activity.");
         Console.WriteLine();
-       
+        break;
     }
-   
 
-    //cont = (Console.ReadLine().ToLower() == "redo" ? true : false);
-
-    
 }
-    
+
